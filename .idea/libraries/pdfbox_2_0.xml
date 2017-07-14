@@ -1,0 +1,23 @@
+<component name="libraryTable">
+  <library name="pdfbox-2.0">
+    <CLASSES>
+      <root url="file:///usr/local/pdfbox-2.0.6" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file:///usr/local/pdfbox-2.0.6/debugger/src/main/java" />
+      <root url="file:///usr/local/pdfbox-2.0.6/examples/src/main/java" />
+      <root url="file:///usr/local/pdfbox-2.0.6/examples/src/test/java" />
+      <root url="file:///usr/local/pdfbox-2.0.6/fontbox/src/main/java" />
+      <root url="file:///usr/local/pdfbox-2.0.6/fontbox/src/test/java" />
+      <root url="file:///usr/local/pdfbox-2.0.6/pdfbox/src/main/java" />
+      <root url="file:///usr/local/pdfbox-2.0.6/pdfbox/src/test/java" />
+      <root url="file:///usr/local/pdfbox-2.0.6/preflight/src/main/java" />
+      <root url="file:///usr/local/pdfbox-2.0.6/preflight/src/test/java" />
+      <root url="file:///usr/local/pdfbox-2.0.6/tools/src/main/java" />
+      <root url="file:///usr/local/pdfbox-2.0.6/tools/src/test/java" />
+      <root url="file:///usr/local/pdfbox-2.0.6/xmpbox/src/main/java" />
+      <root url="file:///usr/local/pdfbox-2.0.6/xmpbox/src/test/java" />
+    </SOURCES>
+  </library>
+</component>

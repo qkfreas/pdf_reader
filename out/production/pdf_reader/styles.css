@@ -1,0 +1,15 @@
+#banner {
+    -fx-font: normal 14px "Sarif Sans";
+    -fx-padding: 0 0 0 10px;
+}
+
+#banner_pane {
+    -fx-background-color: grey;
+    -fx-alignment: top-left;
+    -fx-padding: inherit;
+}
+
+#main_content {
+    -fx-padding: 0 0 0 10px;
+    -fx-spacing: 0 0 10px 0;
+}
