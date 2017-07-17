@@ -6,12 +6,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import org.apache.pdfbox.cos.COSDocument;
-import org.apache.pdfbox.io.RandomAccessRead;
-import org.apache.pdfbox.pdfparser.PDFParser;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.text.PDFTextStripper;
-import text_processor.KeywordFinder;
 import text_processor.PDFProcessor;
 
 import java.io.*;
@@ -39,10 +33,6 @@ public class Controller {
     @FXML
     private void process_file() {
 
-        PDFTextStripper pdfTextStripper;
-        PDDocument pdDocument;
-        COSDocument cosDocument;
-
         String fileName = user_file.getText();
         boolean tf = !fileName.equals("File path here...");
 
@@ -54,7 +44,7 @@ public class Controller {
         }
 
         File file = new File(fileName);
-        System.out.println("File name: " + file.getName() + "\nAssert = " + tf);
+        System.out.println("File name: " + file.getName() + "\nFile path: " + "\nAssert = " + tf);
 
         PDFProcessor pdfProcessor = new PDFProcessor();
         pdfProcessor.run(file.getPath());
