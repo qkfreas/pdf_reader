@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_pdf_reader" default="compile.module.pdf_reader">
+  <dirname property="module.pdf_reader.basedir" file="${ant.file.module_pdf_reader}"/>
+  
+  <property name="module.jdk.home.pdf_reader" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.pdf_reader" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.pdf_reader" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.pdf_reader" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="pdf_reader.output.dir" value="${module.pdf_reader.basedir}/out/production/pdf_reader"/>
+  <property name="pdf_reader.testoutput.dir" value="${module.pdf_reader.basedir}/out/test/pdf_reader"/>
+  
+  <path id="pdf_reader.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="pdf_reader.module.production.classpath">
+    <path refid="${module.jdk.classpath.pdf_reader}"/>
+    <path refid="library.org.apache.pdfbox:pdfbox:2.0.4.classpath"/>
+  </path>
+  
+  <path id="pdf_reader.runtime.production.module.classpath">
+    <pathelement location="${pdf_reader.output.dir}"/>
+    <path refid="library.org.apache.pdfbox:pdfbox:2.0.4.classpath"/>
+  </path>
+  
+  <path id="pdf_reader.module.classpath">
+    <path refid="${module.jdk.classpath.pdf_reader}"/>
+    <pathelement location="${pdf_reader.output.dir}"/>
+    <path refid="library.org.apache.pdfbox:pdfbox:2.0.4.classpath"/>
+  </path>
+  
+  <path id="pdf_reader.runtime.module.classpath">
+    <pathelement location="${pdf_reader.testoutput.dir}"/>
+    <pathelement location="${pdf_reader.output.dir}"/>
+    <path refid="library.org.apache.pdfbox:pdfbox:2.0.4.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.pdf_reader">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.pdf_reader">
+    <patternset refid="excluded.from.module.pdf_reader"/>
+  </patternset>
+  
+  <path id="pdf_reader.module.sourcepath">
+    <dirset dir="${module.pdf_reader.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.pdf_reader" depends="compile.module.pdf_reader.production,compile.module.pdf_reader.tests" description="Compile module pdf_reader"/>
+  
+  <target name="compile.module.pdf_reader.production" depends="register.custom.compilers" description="Compile module pdf_reader; production classes">
+    <mkdir dir="${pdf_reader.output.dir}"/>
+    <javac2 destdir="${pdf_reader.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.pdf_reader}/javac">
+      <compilerarg line="${compiler.args.pdf_reader}"/>
+      <bootclasspath refid="pdf_reader.module.bootclasspath"/>
+      <classpath refid="pdf_reader.module.production.classpath"/>
+      <src refid="pdf_reader.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.pdf_reader"/>
+    </javac2>
+    
+    <copy todir="${pdf_reader.output.dir}">
+      <fileset dir="${module.pdf_reader.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.pdf_reader.tests" depends="register.custom.compilers,compile.module.pdf_reader.production" description="compile module pdf_reader; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.pdf_reader" description="cleanup module">
+    <delete dir="${pdf_reader.output.dir}"/>
+    <delete dir="${pdf_reader.testoutput.dir}"/>
+  </target>
+</project>

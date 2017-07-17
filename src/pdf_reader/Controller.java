@@ -6,11 +6,13 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import org.pdfbox.cos.COSDocument;
-import org.pdfbox.io.RandomAccessFileInputStream;
-import org.pdfbox.pdfparser.PDFParser;
-import org.pdfbox.pdmodel.PDDocument;
-import org.pdfbox.util.PDFTextStripper;
+import org.apache.pdfbox.cos.COSDocument;
+import org.apache.pdfbox.io.RandomAccessRead;
+import org.apache.pdfbox.pdfparser.PDFParser;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import text_processor.KeywordFinder;
+import text_processor.PDFProcessor;
 
 import java.io.*;
 
@@ -36,6 +38,7 @@ public class Controller {
 
     @FXML
     private void process_file() {
+
         PDFTextStripper pdfTextStripper;
         PDDocument pdDocument;
         COSDocument cosDocument;
@@ -52,23 +55,12 @@ public class Controller {
 
         File file = new File(fileName);
         System.out.println("File name: " + file.getName() + "\nAssert = " + tf);
-        try {
-System.out.println("Step 1");
-            FileInputStream fileInputStream = new FileInputStream(file);
-System.out.println("Step 2");
-            PDFParser parser = new PDFParser(fileInputStream);
-System.out.println("Step 3");
-            parser.parse();
-System.out.println("Step 4");
-            cosDocument = parser.getDocument();
-            pdfTextStripper = new PDFTextStripper();
-            pdDocument = new PDDocument(cosDocument);
-            pdfTextStripper.setStartPage(1);
-            pdfTextStripper.setEndPage(5);
-            String parsedText = pdfTextStripper.getText(pdDocument);
-            System.out.println(parsedText);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        PDFProcessor pdfProcessor = new PDFProcessor();
+        pdfProcessor.run(file.getPath());
+
+        System.out.println(pdfProcessor.getInvoice());
+
+
     }
 }
